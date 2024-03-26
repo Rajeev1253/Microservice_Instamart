@@ -1,0 +1,163 @@
+asyncapi: 2.0.0
+info:
+  title: Product Service
+  version: '1.0.0'
+  description: |
+    Inform about updation in Product
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+ development:
+   url: localhost:5672
+   protocol: amqp
+   description: Development RabbitMQ
+
+
+channels:
+  product.product_added:
+    publish:
+      operationId: productAdded
+      message:
+        $ref : '#/components/messages/ProductAdded'
+  product.product_updated:
+    publish:
+      operationId: productUpdated
+      message:
+        $ref : '#/components/messages/ProductUpdated'
+  product.product_deleted:
+    publish:
+      operationId: productdeleted
+      message:
+        $ref : '#/components/messages/ProductDeleted'
+  user.user_signedup:
+    subscribe:
+      operationId: onUserSignUp
+      message:
+        $ref : '#/components/messages/UserSignedUp'
+  user.user_update:
+    subscribe:
+      operationId: onUserUpdate
+      message:
+        $ref : '#/components/messages/UserUpdate'
+  user.user_delete:
+    subscribe:
+      operationId: onUserDelete
+      message:
+        $ref : '#/components/messages/UserSignedUp'
+  
+  
+
+components:
+  messages:
+    UserSignedUp:
+      name: userSignedUp
+      title: User signed up event
+      summary: Inform about a new user registration in the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/userSignedUpPayload'
+    UserUpdate:
+      name: userUpdated
+      title: User updated event
+      summary: Inform about a  user updated in the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/userSignedUpPayload'
+    UserDelete:
+      name: userDeleted
+      title: User deleted event
+      summary: Inform about a  user deleted from the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/userSignedUpPayload'
+    ProductAdded:
+      name: productAdded
+      title: product added event
+      summary: Inform about a new product added to the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/productAddedPayload'
+    ProductUpdated:
+      name: productUpdated
+      title: product update event
+      summary: Inform about a product updated in the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/productAddedPayload'
+    ProductDeleted:
+      name: productDeleted
+      title: product delete event
+      summary: Inform about a  product deleted from the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/productAddedPayload'
+
+
+  schemas:
+    productAddedPayload:
+        type: object
+        properties:
+          title:
+            type: string
+          description:
+            type: string
+          manufacture_details:
+            type: object
+            properties:
+              model_number:
+                type: string
+              release_date:
+                type: string
+                format: date-time
+          shipping_details:
+            type: object
+            properties:
+              weight:
+                type: number
+              width:
+                type: number
+              height:
+                type: number
+              depth:
+                type: number
+          quantity:
+            type: number
+          price:
+            type: number
+
+    userSignedUpPayload:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: ""
+        email:
+          type: string
+          format: email
+          description: "baz"
+        password:
+          type: string
+          format: date-time
+          description: "foo"
+        role:
+          type: string
+          "enum": ["user","admin","vendor","delivery"]
+        address:
+          type: object
+          properties:
+            city:
+              type: string
+            region:
+              type: string
+            state:
+              type: string
+            country:
+              type: string  
+            zipCode:
+              type: string
+        photo:
+          type: string
+      
+            

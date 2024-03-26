@@ -1,0 +1,97 @@
+asyncapi: 2.0.0
+info:
+  title: Ecommerce  Order-Service
+  version: '1.0.0'
+  description: |
+    Whenever  Order updated  it publish data 
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+ development:
+   url: localhost:5672
+   protocol: amqp
+   description: Development RabbitMQ
+
+channels:
+  Orders.order_added:
+    publish:
+      operationId: onOrderCreated
+      message:
+        $ref : '#/components/messages/OrderCreated'
+  Orders.order_updated:
+    publish:
+      operationId: onOrderUpdate
+      message:
+        $ref : '#/components/messages/OrderCreated'
+  Orders.order_deleted:
+    publish:
+      operationId: onOrderDeleted
+      message:
+        $ref: "#/components/messages/OrderDeleted"
+  
+
+
+components:
+  messages:
+    OrderCreated:
+      name: orderCreated
+      title: Order create in event
+      summary: Inform about a order updated  in the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/objectCreatedPayload'
+    OrderUpdated:
+      name: orderDeleted
+      title: Order update in event
+      summary: Inform about a order updated  in the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/objectCreatedPayload'
+    OrderDeleted:
+      name: orderUpdated
+      title: Order update in event
+      summary: Inform about a order updated  in the system
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/objectCreatedPayload'
+
+  schemas:
+    objectCreatedPayload:
+      type: object
+      properties:
+        uuid:
+          type: string
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        title:
+          type: string
+          description: "bar"
+        description:
+          type: string
+        manufacture_details:
+          $ref: "#/components/schemas/manufacture_details"
+        
+        createdAt:
+          type: string
+          format: date-time
+          description: "foo"      
+    manufacture_details:
+      type: object
+      properties:
+        model_number:
+          type: string
+        release_date:
+          type: string
+          format: date-time
+    shipping_details:
+      type: object
+      properties:
+        weight:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+        depth:
+          type: number    

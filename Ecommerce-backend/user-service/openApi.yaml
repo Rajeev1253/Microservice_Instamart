@@ -1,0 +1,268 @@
+openapi: "3.0.0"
+info:
+  title: Ecommerce User-Microservice
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: backend server
+
+paths:
+  /users:
+    post:
+      tags:
+        - User
+      summary: Create new user
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/userCreated"
+
+      responses:
+        "201":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/users"
+        '404':
+            description: Users
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    error:
+                      type: string
+                      example: User doesn't exists
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: server not working
+
+  
+    get:
+      tags:
+        - User
+      summary: Return all user with pagination
+      responses:
+    
+        
+        "200":
+          description: all user fetched
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getusers"   
+        "401":
+          description: Unauthorized Acess
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+       
+
+  /users/${user_id}:
+    put:
+      tags:
+        - "User" 
+      summary: make update in user profile 
+      responses:
+        "200":
+          description: User Update successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/getusers"
+        "401":
+          description: Unauthorized Acess
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        "500":
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  
+  
+    patch:
+      tags:
+        - "User" 
+      summary: to active soft delete 
+      requestBody:
+        description: payload data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getusers" 
+      
+      responses:
+        "200":
+          description: User status updated successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Login"
+  
+  /users/${user_Id}:
+    delete:
+      tags:
+        - "User" 
+      summary: make status active inactive 
+      requestBody:
+        description: payload data
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login" 
+      
+      responses:
+        "200":
+          description: User Fetch successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Login"
+
+  
+
+components:
+  schemas:
+    userCreated:
+     type: object
+     properties:
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      
+      
+        
+       
+    users:
+      type: object
+      properties:
+         name:
+          type: string
+         email:
+          type: string
+         address:
+          $ref: "#/components/schemas/address"
+         phone:
+          type: string
+         password:
+          type: string
+         role:
+          type: string
+          "enum": [ "user", "vendor","admin"]
+    getusers:
+      type: object
+      properties:
+         name:
+          type: string
+         email:
+          type: string
+         address:
+          $ref: "#/components/schemas/address"
+         phone:
+          type: string
+         role:
+          type: string
+          "enum": [ "user", "vendor","admin"]
+      
+            
+
+    posts:
+      type: object
+      properties:
+        _id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        user_id:
+          type: string
+        time_stamp:
+          type: string
+    address:
+      type: object
+      properties:
+        city:
+            type: string
+        region:
+          type: string
+        state:
+          type: string
+        country:
+          type: string  
+        zipCode:
+          type: string
+    geo:
+      type: object
+      properties:
+        lat:
+          type: string
+        lng:
+          type: string
+    company:
+      type: object
+      properties:
+        CompanyName:
+          type: string
+        catchPhrase:
+          type: string
+        bs:
+          type: string
+    SignIn:
+       type: object
+       properties:
+        email:
+          type: string
+        password::
+          type: string
+    Login:
+      type: object
+      properties:
+        success:
+          type: string
+        message:
+          type: string
+        user:
+          type: object
+          properties:
+            email:
+              type: string
+        token:
+          type: string      
+        

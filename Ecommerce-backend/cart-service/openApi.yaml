@@ -1,0 +1,188 @@
+openapi: "3.0.0"
+info:
+  title: Ecommerce cart-Microservice
+  version: 1.0.0
+servers:
+  - url: http://localhost:8082
+    description: backend server
+
+paths:
+  /cart/Addtocart:
+    post:
+      tags:
+        - cart
+      summary: Add cart to cart
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+
+      responses:
+        "201":
+          description: cart added to cart successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+   
+
+  /carts/fetchcart:
+    get:
+      tags:
+        - cart
+      summary: Fetch ALL cart cart
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+  /carts/fetchOne:
+    get:
+      tags:
+        - cart
+      summary: Fetch One cart
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+  /carts/Update:
+    put:
+      tags:
+        - cart
+      summary: update cart
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+
+  /carts/delete:
+    delete:
+      tags:
+        - cart
+      summary: update cart
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/cartCreated"
+   
+
+  
+components:
+  schemas:
+    cartCreated:
+     type: object
+     properties:
+      title:
+        type: string
+      description:
+        type: string
+      manufacture_details:
+        $ref: "#/components/schemas/manufacture_details"
+      shipping_details:
+        $ref: "#/components/schemas/shipping_details"
+      quantity:
+        type: number  
+      pricing:
+        type: object
+        properties:
+          price:
+            type: number
+       
+      
+    shipping_details:
+      type: object
+      properties:
+        weight:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+        depth:
+          type: number
+
+      
+
+    manufacture_details:
+      type: object
+      properties:
+        model_number:
+          type: string
+        release_date:
+          type: string
+          format: date-time     
+    users:
+      type: object
+      properties:
+         name:
+          type: string
+         email:
+          type: string
+         address:
+          $ref: "#/components/schemas/address"
+         phone:
+          type: string
+         password:
+          type: string
+         role:
+          type: string
+          "enum": [ "user", "vendor","delivery","superAdmin","vendorManager","deliveryManager"]
+      
+            
+
+   
+    address:
+      type: object
+      properties:
+        city:
+            type: string
+        region:
+          type: string
+        state:
+          type: string
+        country:
+          type: string  
+        zipCode:
+          type: string
+   
+   
+   
+      
+        

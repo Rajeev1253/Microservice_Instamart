@@ -1,0 +1,187 @@
+openapi: "3.0.0"
+info:
+  title: Ecommerce orders-Microservice
+  version: 1.0.0
+servers:
+  - url: http://localhost:8082
+    description: backend server
+
+paths:
+  /orders/Addtoorders:
+    post:
+      tags:
+        - orders
+      summary: Add orders to orders
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+
+      responses:
+        "201":
+          description: orders added to orders successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+
+  /orders/fetchorders:
+    get:
+      tags:
+        - orders
+      summary: Fetch ALL orders orders
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+  /orders/fetchOne:
+    get:
+      tags:
+        - orders
+      summary: Fetch One orders
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+  /orders/Update:
+    put:
+      tags:
+        - orders
+      summary: update orders
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+
+  /orders/delete:
+    delete:
+      tags:
+        - orders
+      summary: update orders
+      requestBody:
+        description: payload data
+        content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/ordersCreated"
+   
+
+  
+components:
+  schemas:
+    ordersCreated:
+     type: object
+     properties:
+      title:
+        type: string
+      description:
+        type: string
+      manufacture_details:
+        $ref: "#/components/schemas/manufacture_details"
+      shipping_details:
+        $ref: "#/components/schemas/shipping_details"
+      quantity:
+        type: number  
+      pricing:
+        type: object
+        properties:
+          price:
+            type: number
+       
+      
+    shipping_details:
+      type: object
+      properties:
+        weight:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+        depth:
+          type: number
+
+      
+
+    manufacture_details:
+      type: object
+      properties:
+        model_number:
+          type: string
+        release_date:
+          type: string
+          format: date-time     
+    users:
+      type: object
+      properties:
+         name:
+          type: string
+         email:
+          type: string
+         address:
+          $ref: "#/components/schemas/address"
+         phone:
+          type: string
+         password:
+          type: string
+         role:
+          type: string
+          "enum": [ "user", "vendor","delivery","superAdmin","vendorManager","deliveryManager"]
+      
+            
+
+   
+    address:
+      type: object
+      properties:
+        city:
+            type: string
+        region:
+          type: string
+        state:
+          type: string
+        country:
+          type: string  
+        zipCode:
+          type: string
+   
+   
+   
+      
+        

@@ -35,6 +35,9 @@ const UpdateProduct = (lazy(()=>import("./pages/Dashboard/updateProduct")))
 
 const CloseTicket = (lazy(()=>import("./pages/Admin/Ticket/CloseTicket")))
 
+const OrderList = (lazy(()=>import("./pages/vendor/orderList/index")))
+const OrderDetails = (lazy(()=>import("./pages/vendor/orderDetails/index")))
+
 export const routes: RouteObject[] = [
   {
     path: "",
@@ -106,7 +109,16 @@ export const routes: RouteObject[] = [
         path: '/Order',
         element: <Order/>
       },
+      {
+        path: '/OrderList',
+        element: <OrderList/>
+      },
+      {
+        path: '/OrderDetails',
+        element: <OrderDetails/>
+      },
     ],
+
   },
 
 ];

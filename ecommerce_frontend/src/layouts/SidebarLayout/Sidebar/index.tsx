@@ -11,7 +11,7 @@ function SidebarLayout() {
         <aside> 
             <SidebarMenu/>
         </aside>
-        <Stack direction={"column"} width={"100%"} sx={{m:0,p:0}}>
+        <Stack direction={"column"} width={"100wh"} sx={{m:0,p:0}}>
 
             <Headers/>
             <Outlet/>       

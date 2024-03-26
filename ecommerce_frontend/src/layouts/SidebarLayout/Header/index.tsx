@@ -10,16 +10,16 @@ const Headers = () => {
     
       <Stack
         height={"90px"}
+        width={"100%"}
         sx={{ bgcolor: "white",m:0,p:0 }}
         justifyContent={"center"}
-        bgcolor={"red"}
       >
         <Stack justifyContent="space-between" direction={"row"}>
           <Stack justifyContent={"flex-start"}>
             <Search />
           </Stack>
           <Stack
-            width="600px"
+            width="100%"
             justifyContent={"center"}
             direction={"row"}
             alignItems={"center"}

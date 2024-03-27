@@ -2,7 +2,7 @@ import { Paper, Stack, TextField } from '@mui/material'
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 
-const Search = () => {
+const SearchComponent = () => {
   return (
     <div>
         <Paper elevation={0}  sx={{width:"381px",height:"43px",bgcolor:"#EFEFEF78",ml:4}} >
@@ -19,4 +19,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default SearchComponent

@@ -5,7 +5,10 @@ import { RouteObject } from "react-router";
 import SuspenseLoader from "./components/SuspenseLoader";
 import BaseLayout from "./layouts/BaseLayout";
 import Signup from "./pages/signup";
+import UserLayout from "./layouts/UserLayout";
 import Settings from "./pages/Admin/Settings/setting";
+import Myorder from "./pages/User/Order/Myorder";
+import UsersLayout from "./layouts/UsersLayout/Header";
 // const Loader = (Component)=>(props)=>
 // (
 //   <Suspense fallback={<SuspenseLoader/>}>
@@ -37,6 +40,9 @@ const CloseTicket = (lazy(()=>import("./pages/Admin/Ticket/CloseTicket")))
 
 const OrderList = (lazy(()=>import("./pages/vendor/orderList/index")))
 const OrderDetails = (lazy(()=>import("./pages/vendor/orderDetails/index")))
+const UserDashboard = (lazy(()=>import("./pages/User/dashboard/dashboard")))
+
+
 
 export const routes: RouteObject[] = [
   {
@@ -120,5 +126,35 @@ export const routes: RouteObject[] = [
     ],
 
   },
+  {
+    path: "/user",
+    element: <React.Suspense fallback={<>...</>}>
+    <UserLayout />
+  </React.Suspense>,
+    children: [
+      {
+        path: "order",
+        element: <Myorder/>,
+      },
+      {
+        path: 'dashboard',
+        element: <UserDashboard/>
+      },
+    ],
+  },
+  {
+    path: "/users",
+    element: <React.Suspense fallback={<>...</>}>
+    <UsersLayout />
+  </React.Suspense>,
+    children: [
+      {
+        path: "dashboard",
+        element: <UserDashboard/>,
+      },
+     
+    ],
+  },
+
 
 ];

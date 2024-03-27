@@ -1,0 +1,10 @@
+.t{
+    flex: 2;
+}
+.p{
+    flex:1
+}
+.mainStack{
+    margin-top:12px;
+    margin-left: 15px;
+}

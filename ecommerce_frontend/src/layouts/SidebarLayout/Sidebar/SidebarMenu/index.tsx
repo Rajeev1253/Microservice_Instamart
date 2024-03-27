@@ -32,7 +32,7 @@ function SidebarMenu() {
     
     return(
         <>
-        <Stack height={"100vh"} bgcolor={"white"}>
+        <Stack height={"100%"} bgcolor={"white"}>
         <Logo/>
 
 <Stack alignItems='flex-start' sx={{mt:6,ml:2,mr:3,width:"100%",height:"100vh"}} >

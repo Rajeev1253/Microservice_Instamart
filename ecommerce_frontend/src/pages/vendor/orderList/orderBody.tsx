@@ -48,8 +48,8 @@ const OrderBody = () => {
   return (
     <Stack>
 
-    <div style={{ height: 400, width: '100%' }}>
-        <Paper sx={{m:3,height:"auto"}}>
+    <div style={{ width: '100%' }}>
+        <Paper sx={{m:3}}>
             <Stack>
             </Stack>
         <TypographyComponent text='Recent Searches' weight='600' sx={{m:2}}/>

@@ -10,7 +10,7 @@ const Headers = () => {
     
       <Stack
         height={"90px"}
-        width={"100%"}
+    
         sx={{ bgcolor: "white",m:0,p:0 }}
         justifyContent={"center"}
       >

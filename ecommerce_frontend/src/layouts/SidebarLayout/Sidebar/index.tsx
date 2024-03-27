@@ -9,10 +9,9 @@ function SidebarLayout() {
         <div className="adminContainer">
              <Stack direction={"row"}>
         <aside> 
-            <SidebarMenu/>
+            <SidebarMenu/> 
         </aside>
-        <Stack direction={"column"} width={"100wh"} sx={{m:0,p:0}}>
-
+        <Stack sx={{width:"100%",height:"100%"}}>
             <Headers/>
             <Outlet/>       
         </Stack>

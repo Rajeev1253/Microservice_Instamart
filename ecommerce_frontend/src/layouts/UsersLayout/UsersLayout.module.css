@@ -1,0 +1,39 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.mainStack{
+    
+height: 80px !important;
+margin-left:15px;
+margin-right:15px ;
+}
+.logo{
+    height: 24px;
+    margin-bottom: 15px;
+}
+.menuIcon{
+    width: 24px;
+    height: 24px;
+    margin-bottom: 6px !important;
+    margin-left: 5px !important;
+}
+.search{
+    width: 100% !important;
+    height: 56px;
+    background-color: #EFEFEF78;
+    padding-left: 20px;
+}
+.searchIcon{
+    margin-right: 10px;
+}
+.navloc{
+    margin-right: 20px;
+}
+.Login{
+    background-color: #0AAD0A;
+    padding: "18px ,36px";
+    font-size: "18px";
+    width: 92px;
+    height: 48px;
+}

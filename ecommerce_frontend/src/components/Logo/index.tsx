@@ -6,9 +6,9 @@ import {Box, Stack, Typography} from "@mui/material"
 const Logo = () => {
   return (
     <div>
-      <Stack direction={'row'} sx={{ml:5,mt:1.5}}>
-        <Box component="img" src={logo} sx={{width:"32px"}}></Box>
-      <Typography fontSize={"22px"} fontFamily={"poppins"} fontWeight={600} sx={{pl:1}} >Flight Ease</Typography>
+      <Stack direction={'row'} flexWrap='nowrap'>
+        <Box component="img" src={logo}></Box>
+      <Typography fontSize={"22px"} fontFamily={"poppins"} fontWeight={600} sx={{pl:1}}>InstaCart</Typography>
       </Stack>
       {/* <img src={logo}></img> */}
       

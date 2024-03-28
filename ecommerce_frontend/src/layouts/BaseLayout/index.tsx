@@ -6,9 +6,7 @@ import { Outlet } from 'react-router-dom'
 const BaseLayout = () => {
   return (
     <div className='baseContainer'>
-        <Stack height={"60px"} sx={{pt:3,bgcolor:"white"}}>
-            
-
+        <Stack height={"60px"} sx={{pt:3,bgcolor:"white",pl:2}}>
         <Logo/> 
         </Stack>
         <Outlet/>

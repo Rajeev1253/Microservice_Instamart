@@ -6,9 +6,9 @@ import SuspenseLoader from "./components/SuspenseLoader";
 import BaseLayout from "./layouts/BaseLayout";
 import Signup from "./pages/signup";
 import UserLayout from "./layouts/UserLayout";
-import Settings from "./pages/Admin/Settings/setting";
 import Myorder from "./pages/User/Order/Myorder";
 import UsersLayout from "./layouts/UsersLayout/Header";
+import Security from "./pages/Admin/settingss/security";
 // const Loader = (Component)=>(props)=>
 // (
 //   <Suspense fallback={<SuspenseLoader/>}>
@@ -18,7 +18,9 @@ import UsersLayout from "./layouts/UsersLayout/Header";
 // )
 
 const Dashboard = (lazy(()=>import("./pages/Dashboard/index")))
-const AdminSettings = (lazy(()=>import("./pages/Admin/Settings/setting")))
+const AdminSettings = (lazy(()=>import("./pages/Admin/settingss/setting")))
+const Security1 = (lazy(()=>import("./pages/Admin/settingss/security")))
+const Persnol = (lazy(()=>import("./pages/Admin/settingss/persnol")))
 
 const Ticket = (lazy(()=>import("./pages/Admin/Ticket/index")))
 
@@ -43,6 +45,9 @@ const OrderDetails = (lazy(()=>import("./pages/vendor/orderDetails/index")))
 const UserDashboard = (lazy(()=>import("./pages/User/dashboard/dashboard")))
 
 
+const Login = (lazy(()=>import("./pages/login")))
+
+
 
 export const routes: RouteObject[] = [
   {
@@ -56,8 +61,8 @@ export const routes: RouteObject[] = [
         element: <Signup/>,
       },
       {
-        path: '/home',
-        element: <div>Homepage</div>
+        path: '/login',
+        element:<Login/>
       },
     ],
   },
@@ -87,7 +92,33 @@ export const routes: RouteObject[] = [
       },
       {
         path: '/settings',
-        element: <AdminSettings/>
+        element: <AdminSettings/>,
+        children: [
+          {
+            path: 'persnol',
+            element:<Persnol/>
+            
+          },
+          {
+            path: 'security',
+            element: <Security1/>
+     
+          
+          },
+          {
+            path: 'tax',
+            
+          },{
+            path: 'plans',
+  
+          },
+          {
+            path: 'shops',
+            
+          },
+
+
+        ]
       },
       {
         path: '/ticket',
@@ -151,6 +182,10 @@ export const routes: RouteObject[] = [
       {
         path: "dashboard",
         element: <UserDashboard/>,
+      },
+      {
+        path: "signup",
+        element: <Signup/>,
       },
      
     ],

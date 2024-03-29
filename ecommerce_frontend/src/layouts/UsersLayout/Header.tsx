@@ -8,8 +8,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import TypographyComponent from "../../components/Typography";
 import ButtonComponent from "../../components/ButtonComponent";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 const UsersLayout = () => {
+const navigate = useNavigate();
   return (
     <div>
       <Paper>
@@ -66,9 +67,9 @@ const UsersLayout = () => {
             </Stack>
             </Stack>
             <Stack direction={"row"} gap={"25px"} sx={{mr:2}}>
-                <Button variant="text" className={style.Login} sx={{bgcolor:"#0AAD0A",borderRadius:"24px",color:"white"}}>Log in</Button>
+                <Button variant="text"  onClick={()=> {localStorage.clear(); navigate('/signup')}} className={style.Login} sx={{bgcolor:"#0AAD0A",borderRadius:"24px",color:"white"}}>Log Out</Button>
             <Stack > 
-                <Button variant="text" sx={{bgcolor:"#F6F7F8",width:"82px",height:"48px",borderRadius:"48px"}}>
+                <Button variant="text"  sx={{bgcolor:"#F6F7F8",width:"82px",height:"48px",borderRadius:"48px"}}>
                     <ShoppingCartIcon sx={{color:"black"}}/>
                     <TypographyComponent text="0" weight="600" sx={{color:"black",ml:1}}/>
 

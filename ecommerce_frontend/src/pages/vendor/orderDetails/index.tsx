@@ -29,9 +29,9 @@ const OrderDetails = () => {
   return (
     <div>
       <Header text1="Order Details" text2="Home>Order List>Order Details" />
-      <Stack sx={{ mt: 3, ml: 3 }}>
-        <Stack>
-          <Paper sx={{ width: "1108px", height: "500px" }}>
+      <Stack sx={{ m:4 }}>
+        <Stack >
+          <Paper sx={{ width:"100%", height: "560px" }}>
             <Stack sx={{ m: 2 }}>
               <Stack direction={"row"} alignItems={"center"}>
                 <TypographyComponent
@@ -65,7 +65,7 @@ const OrderDetails = () => {
                 width={"100%"}
                 justifyContent={"space-between"}
               >
-                <Stack direction={"row"}>
+                <Stack direction={"row"} >
                   <CalendarMonthIcon sx={{ mr: 2 }} />
                   <TypographyComponent text="Feb16,2022-feb20,2022" />
                 </Stack>
@@ -81,6 +81,7 @@ const OrderDetails = () => {
                       id="demo-simple-select"
                       value={age}
                       label="Age"
+                     
                       onChange={handleChange}
                     >
                       <MenuItem value={10}>Pending</MenuItem>
@@ -118,14 +119,14 @@ const OrderDetails = () => {
                   </Button>
                 </Stack>
               </Stack>
-              <Stack sx={{ height: "194px" }} direction={"row"} gap={1.5}>
+              <Stack sx={{ height: "194px",width:"100%",mt:2 }} direction={"row"} gap={1.5} justifyContent={"space-evenly"}>
                 <OrderCard />
                 <OrderCard />
                 <OrderCard />
               </Stack>
-              <Stack direction={"row"} gap={1.5}>
+              <Stack direction={"row"} gap={1.5} sx={{mt:4,ml:8}} justifyContent={"space-evenly"}>
                 <Stack>
-                <Card sx={{ width: "348px", height: "154px" }}>
+                <Card sx={{ width: "400px", height: "154px" }}>
                   <TypographyComponent
                     text="Payment Info"
                     weight="600"
@@ -147,7 +148,7 @@ const OrderDetails = () => {
                 </Card>
                 </Stack>
                 <Stack>
-                    <Card sx={{ width: "712px", height: "154px" }}>
+                    <Card sx={{ width: "700px", height: "154px" }}>
                         <CardContent>
                             <TypographyComponent text="Note" weight="600" size="20px" sx={{mb:1.5}}/>
                             
@@ -164,7 +165,7 @@ const OrderDetails = () => {
         </Stack>
         <Stack>
           <Stack sx={{ mt: 3 }}>
-            <Paper sx={{ width: "1108px", height: "430px" }}></Paper>
+            <Paper sx={{ width: "100%", height: "430px" }}></Paper>
           </Stack>
         </Stack>
       </Stack>

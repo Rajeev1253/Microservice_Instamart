@@ -10,7 +10,7 @@ interface HeaderProps {
 const Header = (props:HeaderProps) => {
   return (
     <div>
-          <Stack>
+          <Stack sx={{ml:4}}>
         <Stack sx={{mt:3}} width={"100%"} direction={"row"} justifyContent={"space-between"}>
             <Stack>
         <TypographyComponent weight='600' size='28px' text={props.text1}/>

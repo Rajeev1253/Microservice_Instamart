@@ -6,8 +6,8 @@ import ButtonComponent from './ButtonComponent'
 const OrderCard = () => {
   return (
     <div>
-        <Card sx={{width:"348px",height:"194px"}} >
-           <CardContent sx={{m:1}}>
+        <Card sx={{width:"100%",height:"214px"}} >
+           <CardContent sx={{m:1,width:"100%"}}>
             <Stack direction={"row"}>
 
             <Stack>

@@ -10,7 +10,7 @@ const index = () => {
     <div>
        <Stack>
 
-        <Stack>
+        <Stack sx={{ml:3,mr:4}}>
         <OrdeHeader/>
         </Stack>
         <Stack>

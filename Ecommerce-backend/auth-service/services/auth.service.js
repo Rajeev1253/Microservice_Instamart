@@ -2,6 +2,7 @@ import { comparePassword, hashPassword } from "../helper/auth.helper.js";
 import { userModel } from "../models/userModel.js";
 import JWT from "jsonwebtoken"
 import Producer from "../workers/producer.js";
+import e from "cors";
 const producer = new Producer();
 
  const register = async(req) => {
@@ -67,7 +68,7 @@ const producer = new Producer();
   };
   const login = async (payload) => {
     try {
-      const { email, password } = payload.body;
+      const { email, password} = payload.body;
       console.log(email, password);
       if (!email || !password) {
         throw Object.assign(new Error(), {
@@ -78,12 +79,19 @@ const producer = new Producer();
   
       const user = await userModel.findOne({ email });
       // console.log(user);
-      if (!user) {
+      if (!user ) {
         throw Object.assign(new Error(), {
           name: "BAD_REQUEST",
           message: `Email is not registered`,
         });
       }
+      if (user.status === 'inactive' ) {
+        throw Object.assign(new Error(), {
+          name: "BAD_REQUEST",
+          message: `User is not active `,
+        });
+      }
+     
   
       const match = await comparePassword(password, user.password);
   
@@ -104,12 +112,14 @@ const producer = new Producer();
     }
   };
 
-  export const update =async(req)=>{
+  export const update =async(msg)=>{
     try{
-      const update =  {isRegistered:`${req.status}`}
+      const {email,status}= msg
+      console.log("fsgfjdjkgdffffffffffffff",status,email)
+      const update =  {isRegistered:`${status}`}
 
 
-      const user = await userModel.findOneAndUpdate({email:req.email},update)
+      const user = await userModel.findOneAndUpdate({email:email},update)
      return user
     }
     catch(error){

@@ -31,11 +31,11 @@ const ProductBody = () => {
                     <TypographyComponent text='Product Name' weight='600'/>
                     <Stack sx={{mt:2}}>
 
-                    <OutlinedInput
+                   <OutlinedInput
             id="outlined-adornment-weight"
             aria-describedby="outlined-weight-helper-text"
             sx={{width:"100%",height:"100%"}}
-          />
+          /> 
 
           
                     </Stack>

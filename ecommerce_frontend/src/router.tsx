@@ -9,6 +9,9 @@ import UserLayout from "./layouts/UserLayout";
 import Myorder from "./pages/User/Order/Myorder";
 import UsersLayout from "./layouts/UsersLayout/Header";
 import Security from "./pages/Admin/settingss/security";
+import { useSelector } from "react-redux";
+import { RootState } from "./app/store";
+import { Navigate } from "react-router-dom";
 // const Loader = (Component)=>(props)=>
 // (
 //   <Suspense fallback={<SuspenseLoader/>}>
@@ -17,44 +20,77 @@ import Security from "./pages/Admin/settingss/security";
 //   </Suspense>
 // )
 
-const Dashboard = (lazy(()=>import("./pages/Dashboard/index")))
-const AdminSettings = (lazy(()=>import("./pages/Admin/settingss/setting")))
-const Security1 = (lazy(()=>import("./pages/Admin/settingss/security")))
-const Persnol = (lazy(()=>import("./pages/Admin/settingss/persnol")))
+const Loader = (Component:any) => (props:any) =>
+  (
+    <Suspense fallback={<SuspenseLoader />}>
+      <Component {...props} />
+    </Suspense>
+  );
+const Dashboard = Loader(lazy(()=>import("./pages/Dashboard/index")))
+const AdminSettings =  Loader(lazy(()=>import("./pages/Admin/settingss/setting")))
+const Security1 =  Loader(lazy(()=>import("./pages/Admin/settingss/security")))
+const Persnol =  Loader(lazy(()=>import("./pages/Admin/settingss/persnol")))
 
-const Ticket = (lazy(()=>import("./pages/Admin/Ticket/index")))
+const Ticket =  Loader(lazy(()=>import("./pages/Admin/Ticket/index")))
 
-const Order = (lazy(()=>import("./pages/Admin/Orders/index")))
+const Order =  Loader(lazy(()=>import("./pages/Admin/Orders/index")))
 
-const Chatbot = (lazy(()=>import("./pages/Admin/Chatbots/index")))
+const Chatbot =  Loader(lazy(()=>import("./pages/Admin/Chatbots/index")))
 
-const Customer = (lazy(()=>import("./pages/Admin/Customers")))
+const Customer =  Loader(lazy(()=>import("./pages/Admin/Customers")))
 
-const TicketOrder = (lazy(()=>import("./pages/Admin/Ticket/TicketOrder")))
+const TicketOrder =  Loader(lazy(()=>import("./pages/Admin/Ticket/TicketOrder")))
 
-const AddProduct = (lazy(()=>import("./pages/vendor/productDetails")))
+const AddProduct =  Loader(lazy(()=>import("./pages/vendor/productDetails")))
 
-const ViewProduct = (lazy(()=>import("./pages/Dashboard/viewProduct")))
+const ViewProduct =  Loader(lazy(()=>import("./pages/Dashboard/viewProduct")))
 
-const UpdateProduct = (lazy(()=>import("./pages/Dashboard/updateProduct")))
+const UpdateProduct =  Loader(lazy(()=>import("./pages/Dashboard/updateProduct")))
 
-const CloseTicket = (lazy(()=>import("./pages/Admin/Ticket/CloseTicket")))
+const CloseTicket =  Loader(lazy(()=>import("./pages/Admin/Ticket/CloseTicket")))
 
-const OrderList = (lazy(()=>import("./pages/vendor/orderList/index")))
-const OrderDetails = (lazy(()=>import("./pages/vendor/orderDetails/index")))
-const UserDashboard = (lazy(()=>import("./pages/User/dashboard/dashboard")))
+const OrderList =  Loader(lazy(()=>import("./pages/vendor/orderList/index")))
+const OrderDetails =  Loader(lazy(()=>import("./pages/vendor/orderDetails/index")))
+const UserDashboard =  Loader(lazy(()=>import("./pages/User/dashboard/dashboard")))
 
 
 const Login = (lazy(()=>import("./pages/login")))
+interface ProtectedProps  { 
+  children: React.ReactNode
+}
+
+const Protected = (props : ProtectedProps) => {
+  // console.log("protected")
+  // const user = useSelector((state: RootState)=> state?.user?.user);
+  const token = localStorage.getItem('token');
+  return token? <>{props.children}</> :  <Navigate to="/signup" />;
+};
+const Private = (props : ProtectedProps) => {
+  const token = localStorage.getItem('token');
+  const user = useSelector((state: RootState)=> state?.auth?.users);
+  // return token && user?.user !== 'ADMIN' ? <Navigate to="/" /> : <>{props.children}</>;
+};
+const Public = (props : ProtectedProps) => {
+  const user = useSelector((state: RootState)=> state?.auth?.users);
+  // return Object.keys(user).length === 0 && user?.role !== 'USER' ? <Navigate to="/" /> : <>{props.children}</>;
+};
+const LoggedIn = (props : ProtectedProps) => {
+  // const user = useSelector((state: RootState)=> state?.user?.user);
+  const token = localStorage.getItem('token');
+  return token ? <Navigate to="/" /> : <>{props.children}</>;
+};
+
 
 
 
 export const routes: RouteObject[] = [
   {
     path: "",
-    element: <React.Suspense fallback={<>...</>}>
-    <BaseLayout />
-  </React.Suspense>,
+    element:    <Suspense fallback={<SuspenseLoader />}>
+      <BaseLayout />
+  </Suspense>,
+    
+
     children: [
       {
         path: "/signup",
@@ -68,7 +104,7 @@ export const routes: RouteObject[] = [
   },
   {
     path: "",
-    element:<React.Suspense fallback={<>...</>}>
+    element:<React.Suspense fallback={<SuspenseLoader/>}>
     <SidebarLayout />
   </React.Suspense>,
     children: [
@@ -143,13 +179,10 @@ export const routes: RouteObject[] = [
         element: <Chatbot/>
       },
       {
-        path: '/Order',
-        element: <Order/>
-      },
-      {
-        path: '/OrderList',
+        path: '/Orders',
         element: <OrderList/>
       },
+      
       {
         path: '/OrderDetails',
         element: <OrderDetails/>

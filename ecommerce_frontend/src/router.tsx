@@ -32,7 +32,7 @@ const Customer = (lazy(()=>import("./pages/Admin/Customers")))
 
 const TicketOrder = (lazy(()=>import("./pages/Admin/Ticket/TicketOrder")))
 
-const AddProduct = (lazy(()=>import("./pages/Dashboard/addProduct")))
+const AddProduct = (lazy(()=>import("./pages/vendor/productDetails")))
 
 const ViewProduct = (lazy(()=>import("./pages/Dashboard/viewProduct")))
 

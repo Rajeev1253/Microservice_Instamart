@@ -115,11 +115,13 @@ const producer = new Producer();
   export const update =async(msg)=>{
     try{
       const {email,status}= msg
-      console.log("fsgfjdjkgdffffffffffffff",status,email)
-      const update =  {isRegistered:`${status}`}
+      console.log("fsgfjdjkgdffffffffffffff",msg)
+      const updated =  {isRegistered:`${status}`}
+      const filter = {email:email}
+      
 
 
-      const user = await userModel.findOneAndUpdate({email:email},update)
+      const user = await userModel.findOneAndUpdate(filter, updated);
      return user
     }
     catch(error){

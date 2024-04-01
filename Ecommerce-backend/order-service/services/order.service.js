@@ -1,8 +1,7 @@
-import { orderModel } from "../models/order.model";
-
-export const createOrder = async (req) => {
+import { orderModel } from "../models/order.model.js";
+const createOrder = async (req) => {
     try {
-        const {name,phoneNo,pincode,city,userId,products} = req.body;
+        const {phoneNo,pincode,city,userId,products} = req.body;
         if (!name) {
             throw Object.assign(new Error(), {
                 name: "BAD_REQUEST",

@@ -1,10 +1,11 @@
 import amqp from 'amqplib'
 import configRabbit from "../config/rabbitmq.config.js"
+import orderProcessor, { createOrder } from '../processor/order.processor.js';
 
-const {registerUser} = userProcessor
+const {registerUser} = orderProcessor
 
 const processors = {
-  [process.env.RABBIT_AUTH_REGISTER_SIGNATURE]: registerUser
+  [process.env.RABBIT_ORDER_REGISTER_SIGNATURE]: createOrder
  
 };
 
@@ -20,7 +21,7 @@ async function consumeMessages() {
     const q = await channel.assertQueue("usersQueue");
     console.log(q.queue)
 
-    await channel.bindQueue(q.queue, exchangeName, "hello");
+    await channel.bindQueue(q.queue, exchangeName, "order");
 
     channel.consume(q.queue, async(msg) => {
       console.log('msg: ', 'headers: ', msg?.properties?.headers, 'type: ', msg?.properties?.type, '\n');

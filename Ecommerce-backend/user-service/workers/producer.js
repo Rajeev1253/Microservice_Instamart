@@ -39,6 +39,8 @@ class Producer {
         );
 
         console.log("MESSAGE", message)
+        console.log(`the message ${message.email} is sent to exchange ${exchangeName} and routing key is ${routingKey} AND SIGNATURE IS ${signature}`);
+
     }
 
 }

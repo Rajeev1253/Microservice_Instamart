@@ -9,7 +9,7 @@ dotenv.config();
 app.use(express.json())
 app.use(cors())
 connectdb();
-consumeMessages();
+consumeMessages()
 
 const port  =process.env.PORT;
 app.listen(port,()=>{

@@ -1,5 +1,6 @@
 import { authService } from "../services/auth.service.js";
-export const updateUser = async (msg) => {
+export const updateUser = async (msg) => { 
+  console.log("dffdsbfdsbjdfsbdfhbs",msg)
   const {email,status}= msg
     console.log("messagefbgfdhhhhhhhhhhhhhhhhhhhh  ",email,status)
     try {
@@ -13,7 +14,7 @@ export const updateUser = async (msg) => {
     const {email,status}= msg
       console.log("deleteeeeeeeeeeeeeedddddddddd",email,status)
       try {
-        const response = await authService.update(email);
+        const response = await authService.update(msg);
       }
       catch(error){
         console.log(error)

@@ -1,11 +1,11 @@
 import amqp from 'amqplib'
 import configRabbit from "../config/rabbitmq.config.js"
-
-import authProcessor from '../processor/auth.processor.js';
-const { updateUser } = authProcessor
+import sellerProcessor, { registerUser } from '../processor/seller.processor.js';
+import orderProcessor    from '../processor/order.processor.js';
 
 const processors = {
-  [process.env.RABBIT_AUTH_REGISTER_SIGNATURE]: updateUser
+  [process.env.RABBIT_AUTH_REGISTER_SIGNATURE]: registerUser
+  
 
 };
 

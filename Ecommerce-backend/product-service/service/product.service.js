@@ -26,7 +26,7 @@ export const createProduct = async(req) => {
       throw Object.assign(new Error(), {
         name: "BAD_REQUEST",
         message: "quantity is required",
-      });
+      });  
     }
     if (!category) {
       throw Object.assign(new Error(), {
@@ -34,19 +34,13 @@ export const createProduct = async(req) => {
         message: "category is required",
       });
     }
-    if (!userid) {
-      throw Object.assign(new Error(), {
-        name: "BAD_REQUEST",
-        message: "userId is required",
-      });
-    }
+    
     const product = await productModel.create({
       title:title,
       description:description,
       price:price,
       quantity:quantity,
       category:category,
-      user:userid
     });
     return product
   } catch (error) {

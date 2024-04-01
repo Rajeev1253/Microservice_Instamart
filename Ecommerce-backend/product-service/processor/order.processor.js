@@ -1,11 +1,9 @@
-import { orderService } from "../services/order.service.js";
-
+import { orderService } from "../service/order.service.js";
 export const createOrder = async (message) => {
     // const {userDetails = {}} = payload
     console.log("message",message)
     try {
-      console.log("data",messages)
-      const response = await orderService.createOrder(message);
+      const response = await orderService.createOrder(message)
       if (!response) {
         throw new Error('User could not be created.');
       }
@@ -16,6 +14,6 @@ export const createOrder = async (message) => {
   };
 
   const orderProcessor ={
-   createOrder
+    createOrder
   }
   export default orderProcessor;    

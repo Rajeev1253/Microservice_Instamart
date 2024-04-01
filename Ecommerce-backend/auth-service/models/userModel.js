@@ -26,7 +26,8 @@ const userSchema =  mongoose.Schema({
   },
   isRegistered:{
     type:String,
-    default:"pending",
+    enum: ["pending","registered"],
+    default:"pending"
   },
   
 });

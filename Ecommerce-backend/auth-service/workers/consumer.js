@@ -21,7 +21,7 @@ async function consumeMessages() {
   const q = await channel.assertQueue("usersQueue2");
   console.log(q.queue)
 
-  await channel.bindQueue(q.queue, exchangeName, "hello");
+  await channel.bindQueue(q.queue, exchangeName, "hello2");
 
   channel.consume(q.queue, async (msg) => {
     console.log('msg..............: ', 'headers: ', msg?.properties?.headers, 'type: ', msg?.properties?.type, '\n');

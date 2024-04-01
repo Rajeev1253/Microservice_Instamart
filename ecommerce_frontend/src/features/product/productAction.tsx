@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {type product} from "./ProductSlice"
+import {type product} from "./productSlice"
 import axios from "axios";
 import { ACTION_TYPE } from "./productType";
 // import { userSignin, userSignup } from "../../service/auth.service";
@@ -14,7 +14,7 @@ ACTION_TYPE.ADD_PRODUCT,
         },
       };  
       console.log(data)
-      const res = await axios.post(`http://localhost:8003/products`,data,config)
+      const res = await axios.post(`http://localhost:8082/products`,data,config)
 
       // const res = await userRegister({email,password},config)
       console.log(res)
